@@ -1,0 +1,19 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+
+    stage('Smoke') {
+      steps {
+        sh 'echo "Webhook OK: pipeline started"'
+        sh 'pwd'
+        sh 'ls -la'
+      }
+    }
+  }
+}
