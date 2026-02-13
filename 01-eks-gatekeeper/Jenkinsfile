@@ -1,19 +1,24 @@
 pipeline {
-  agent any
+    agent any
 
-  stages {
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
-    }
+    stages {
+        stage('Success') {
+            steps {
+                echo 'This stage will pass'
+            }
+        }
 
-    stage('Smoke') {
-      steps {
-        sh 'echo "Webhook OK: pipeline started"'
-        sh 'pwd'
-        sh 'ls -la'
-      }
+        stage('Failure') {
+            steps {
+                sh 'exit 1'
+            }
+        }
+
+        stage('Never Runs') {
+            steps {
+                echo 'You will not see this'
+            }
+        }
     }
-  }
 }
+
